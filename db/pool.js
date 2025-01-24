@@ -23,6 +23,18 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL, // Use the connection string here
   ssl: { rejectUnauthorized: false }, // Necessary for connecting to Render's managed DB
 });
+// Function to check database connection
+async function checkDatabaseConnection() {
+  try {
+    const client = await pool.connect(); // Try to connect to the DB
+    console.log('Database connected successfully!');
+    client.release(); // Release the client back to the pool
+  } catch (error) {
+    console.error('Error connecting to the database:', error,process.env.DATABASE_URL);
+  }
+}
 
+// Call the function
+checkDatabaseConnection();
 
 module.exports = pool;

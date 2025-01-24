@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const next = require("next");
 const path = require('path');
+require('dotenv').config();
 
 // Import routes
 const orderRoutes = require('./routes/orders');

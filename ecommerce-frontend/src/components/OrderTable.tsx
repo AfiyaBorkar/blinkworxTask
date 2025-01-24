@@ -18,7 +18,7 @@ export default function OrderTable() {
   // Fetch orders
   const fetchOrders = async () => {
     try {
-      const response = await axios.get(`${process.env.API_ENDPOINT}/api/orders`);
+      const response = await axios.get(`/api/orders`);
       setOrders(response.data);
       setFilteredOrders(response.data);
     } catch (err:any) {
@@ -32,7 +32,7 @@ export default function OrderTable() {
   // Fetch products
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`${process.env.API_ENDPOINT}/api/products`);
+      const response = await axios.get(`/api/products`);
       setProducts(response.data);
     } catch (err:any) {
       console.error("Error fetching products:", err.message);
@@ -42,7 +42,7 @@ export default function OrderTable() {
   // Fetch order details by ID for editing
   const fetchOrderById = async (id:any) => {
     try {
-      const {data} = await axios.get(`${process.env.API_ENDPOINT}/api/orders/${id}`);
+      const {data} = await axios.get(`/api/orders/${id}`);
       const order = data;
       console.log("orderpart data", order)
 
@@ -86,10 +86,10 @@ export default function OrderTable() {
       };
 
       if (isEditing) {
-        await axios.put(`${process.env.API_ENDPOINT}/api/orders/${newOrder.id}`, orderData);
+        await axios.put(`/api/orders/${newOrder.id}`, orderData);
         toast.success("Order updated successfully!");
       } else {
-        await axios.post(`${process.env.API_ENDPOINT}/api/orders`, orderData);
+        await axios.post(`/api/orders`, orderData);
         toast.success("Order created successfully!");
       }
 
@@ -108,7 +108,7 @@ export default function OrderTable() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`${process.env.API_ENDPOINT}/api/orders/${id}`);
+      await axios.delete(`/api/orders/${id}`);
       toast.success("Order deleted successfully.");
       fetchOrders();
     } catch (err:any) {

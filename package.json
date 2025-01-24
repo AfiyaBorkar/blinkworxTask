@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "node index.js",
     "build": "cd ecommerce-frontend && npm install && npm run build",
-    "start": "npm run build && node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC"
